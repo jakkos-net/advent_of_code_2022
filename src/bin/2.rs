@@ -10,7 +10,7 @@ fn main() {
         .lines()
         .map(|line| line.unwrap())
         .collect::<Vec<_>>();
-    
+
     // iterator of (opponent move, my move)
     let rps_iter = lines.iter().map(|line| line.split(" ")).map(|mut split| {
         (
@@ -30,7 +30,9 @@ fn main() {
     });
 
     let a_score_total = rps_iter
-        .map(|(opponent, mine)| mine.select_score() + mine.outcome_against(&opponent).outcome_score())
+        .map(|(opponent, mine)| {
+            mine.select_score() + mine.outcome_against(&opponent).outcome_score()
+        })
         .sum::<u32>();
 
     // iterator of (opponent move, outcome)
