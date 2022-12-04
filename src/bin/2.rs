@@ -14,13 +14,13 @@ fn main() {
     // iterator of (opponent move, my move)
     let rps_iter = lines.iter().map(|line| line.split(" ")).map(|mut split| {
         (
-            match split.nth(0).unwrap() {
+            match split.next().unwrap() {
                 "A" => Rps::Rock,
                 "B" => Rps::Paper,
                 "C" => Rps::Scissors,
                 _ => panic!("Wrong opponent input!"),
             },
-            match split.nth(0).unwrap() {
+            match split.next().unwrap() {
                 "X" => Rps::Rock,
                 "Y" => Rps::Paper,
                 "Z" => Rps::Scissors,
@@ -38,13 +38,13 @@ fn main() {
     // iterator of (opponent move, outcome)
     let outcome_iter = lines.iter().map(|line| line.split(" ")).map(|mut split| {
         (
-            match split.nth(0).unwrap() {
+            match split.next().unwrap() {
                 "A" => Rps::Rock,
                 "B" => Rps::Paper,
                 "C" => Rps::Scissors,
                 _ => panic!("Wrong opponent input!"),
             },
-            match split.nth(0).unwrap() {
+            match split.next().unwrap() {
                 "X" => Outcome::Lose,
                 "Y" => Outcome::Draw,
                 "Z" => Outcome::Win,
