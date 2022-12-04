@@ -12,7 +12,7 @@ fn main() {
         .collect::<Vec<_>>();
 
     // iterator of (opponent move, my move)
-    let rps_iter = lines.iter().map(|line| line.split(" ")).map(|mut split| {
+    let move_iter = lines.iter().map(|line| line.split(" ")).map(|mut split| {
         (
             match split.next().unwrap() {
                 "A" => Rps::Rock,
@@ -29,9 +29,9 @@ fn main() {
         )
     });
 
-    let a_score_total = rps_iter
-        .map(|(opponent, mine)| {
-            mine.select_score() + mine.outcome_against(&opponent).outcome_score()
+    let a_score_total = move_iter
+        .map(|(opponent_move, my_move)| {
+            my_move.select_score() + my_move.outcome_against(&opponent_move).outcome_score()
         })
         .sum::<u32>();
 
@@ -54,15 +54,15 @@ fn main() {
     });
 
     let b_score_total = outcome_iter
-        .map(|(opponent, outcome)| {
+        .map(|(opponent_move, outcome)| {
             // pick my move based on the desired outcome and what the opponent did
-            let mine = match outcome {
-                Outcome::Lose => opponent.wins_against(),
-                Outcome::Draw => opponent,
-                Outcome::Win => opponent.loses_against(),
+            let my_move = match outcome {
+                Outcome::Lose => opponent_move.wins_against(),
+                Outcome::Draw => opponent_move,
+                Outcome::Win => opponent_move.loses_against(),
             };
 
-            outcome.outcome_score() + mine.select_score()
+            outcome.outcome_score() + my_move.select_score()
         })
         .sum::<u32>();
 
@@ -88,11 +88,7 @@ impl Rps {
     }
 
     fn loses_against(&self) -> Self {
-        match self {
-            Rps::Rock => Rps::Paper,
-            Rps::Paper => Rps::Scissors,
-            Rps::Scissors => Rps::Rock,
-        }
+        self.wins_against().wins_against()
     }
 
     fn wins_against(&self) -> Self {
