@@ -32,7 +32,7 @@ fn main() {
                 .reduce(|a, b| a.intersection(&b).cloned().collect()) // intersection of all the sets
                 .unwrap()
                 .into_iter() // iterator of items in the all-intersected set
-                .next() // get the first (and hopefully only) item
+                .next() // get the item in all
                 .unwrap();
             priority(&badge)
         })
@@ -43,8 +43,8 @@ fn main() {
 
 fn priority(item: &char) -> u32 {
     let mut priority = item.to_ascii_lowercase() as u32 - 'a' as u32 + 1; //a -> 1, b -> 2, .. ignore upper/lower case
-    if item.is_ascii_uppercase() {
+    if item.is_ascii_uppercase() { // if its uppercase, add 26. E.g., a is 1, A is 27, b is 2, B is 28
         priority += 26
-    }; // if its uppercase, add 26. E.g., a is 1, A is 27, b is 2, B is 28
+    };
     priority
 }
