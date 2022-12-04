@@ -11,18 +11,12 @@ fn main() {
         .map(|line| line.unwrap())
         .collect::<Vec<_>>();
 
-    // split the flat list of strings into a list of lists of strings (one list per elf)
-    let string_list_per_elf = lines.split(|s| s.is_empty());
-
-    // convert all the strings to numbers
-    let num_list_per_elf = string_list_per_elf.map(|string_list| {
-        string_list
+    let total_per_elf = lines.split(|s| s.is_empty()).map(|elf_items| {
+        elf_items // for each item an elf is carrying
             .iter()
-            .map(|string| string.parse::<u32>().unwrap())
+            .map(|item| item.parse::<u32>().unwrap()) // convert strings to numbers, e.g. "6900" => 6900
+            .sum::<u32>() // add all the numbers together
     });
-
-    // sum each list of numbers
-    let total_per_elf = num_list_per_elf.map(|num_list| num_list.sum::<u32>());
 
     // sort the totals
     let mut totals_sorted_desc = total_per_elf.collect::<Vec<_>>();
