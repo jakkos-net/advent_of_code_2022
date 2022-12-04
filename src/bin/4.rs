@@ -11,7 +11,7 @@ fn main() {
         .map(|line| line.unwrap())
         .collect::<Vec<_>>();
 
-    // create an iteartor of ((first_elf_start_section, first_elf_stop_section), (second_elf_start_section, second_elf_stop_section))
+    // create an iterator of ((first_elf_start_section, first_elf_stop_section), (second_elf_start_section, second_elf_stop_section))
     let elf_pair_sections = lines.iter().map(|line| {
         let mut elf_pair = line.split(",").map(|sections| {
             let mut sec_nums = sections
