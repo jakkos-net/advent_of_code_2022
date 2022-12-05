@@ -28,8 +28,9 @@ fn main() {
     // push the items onto each stack (bottom first)
     stack_lines.iter().rev().skip(1).for_each(|line| {
         line.chars()
-            .skip(1)
-            .step_by(4)
+            //The item line is formatted "[A] [B] [C]..."
+            .skip(1) // so if we skip the first char
+            .step_by(4) // and take every 4th, we get the item names
             .enumerate()
             .for_each(|(stack, item)| {
                 if item != ' ' {
