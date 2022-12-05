@@ -50,8 +50,8 @@ fn main() {
         });
 
         let num_items_to_move = nums.next().unwrap();
-        let start_stack = nums.next().unwrap() - 1;
-        let end_stack = nums.next().unwrap() - 1;
+        let start_stack = nums.next().unwrap() - 1; // stacks stack counting from 1
+        let end_stack = nums.next().unwrap() - 1; // but we start from 0
         (num_items_to_move, start_stack, end_stack)
     });
 
