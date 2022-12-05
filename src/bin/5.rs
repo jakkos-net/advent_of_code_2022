@@ -70,10 +70,12 @@ fn main() {
     let mut b_stacks = stacks;
     // grab and move multiple pieces at a time
     move_instructions.for_each(|(num_items_to_move, start_stack, end_stack)| {
+        // grab all the items at once
         let mut grabbed_items = vec![];
         (0..num_items_to_move).for_each(|_| {
             grabbed_items.push(b_stacks[start_stack].pop().unwrap());
         });
+        // then push all the items at once
         grabbed_items.into_iter().rev().for_each(|item| {
             b_stacks[end_stack].push(item);
         });
