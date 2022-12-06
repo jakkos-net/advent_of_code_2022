@@ -21,4 +21,7 @@ name = "4"
 name = "5"
 
 
+[[bin]]
+name = "6"
+
 [dependencies]
