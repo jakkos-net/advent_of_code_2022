@@ -1,16 +1,16 @@
-
 use std::{
     fs::File,
     io::{self, BufRead},
 };
 
 fn main() {
-    // get input file lines
+    // get input file line
     let file = File::open("inputs/6.txt").unwrap();
-    let lines = io::BufReader::new(file)
-        .lines()
-        .map(|line| line.unwrap())
-        .collect::<Vec<_>>();
+    let line = io::BufReader::new(file).lines().next().unwrap().unwrap();
 
+    let group_size = 4;
+    line.chars()
+        .collect::<Vec<_>>()
+        .windows(group_size)
+        .for_each(|window| {});
 }
-
