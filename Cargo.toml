@@ -20,8 +20,10 @@ name = "4"
 [[bin]]
 name = "5"
 
-
 [[bin]]
 name = "6"
+
+[[bin]]
+name = "7"
 
 [dependencies]
